@@ -1,6 +1,4 @@
-# Título del Proyecto
-
-Prueba fullstack developer luxelare - Caso practico estudio de COVID en México
+# Prueba fullstack developer luxelare - Caso practico estudio de COVID en México
 
 
 ### Pre-requisitos
@@ -26,8 +24,12 @@ _Pasos para correr el proyecto_
 
 _corremos el siguiente comando_
 - docker-compose build
+
+
 _esto para construir nuestras imagenes en docker_
 - docker-compose up
+
+
 _esto para correr las imagenes creadas en sus respectivos containers_
 
 _Nota: debemos esperar aproximadamente 10 s en lo que la API obtiene los datos_
