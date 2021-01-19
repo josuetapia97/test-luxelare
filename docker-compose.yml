@@ -1,0 +1,39 @@
+#la version más reciente de compose segun
+# la documentacion oficial
+# https://docs.docker.com/compose/compose-file/
+#se crea un compose con el fin de no levantar
+#contenedor por contenedor
+version: '3.8'
+
+services:
+  covid-api:
+    container_name: covid-api
+    build: ./back-end
+    ports:
+      - 8000:8000
+    networks: 
+      - covid_api_network
+
+  covid-frontend:
+    container_name: covid-frontend
+    build: ./front-end
+    ports:
+      - 9000:80
+    networks: 
+      - covid_front_network
+
+  covid-proxy:
+    container_name: covid-proxy
+    build: ./proxy/proxy-nodejs
+    ports:
+      - 5000:5000
+    networks: 
+      - covid_front_network
+      - covid_api_network
+#si bien los tres contenedores pueden estar
+#en la misma red, los separe por dos redes
+#de esta forma el frontend solo puede llegar al
+#backend por medio del proxy 
+networks: 
+  covid_front_network:
+  covid_api_network:
