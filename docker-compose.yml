@@ -16,7 +16,7 @@ services:
 
   covid-frontend:
     container_name: covid-frontend
-    build: ./front-end
+    build: ./front-end/front-end-react
     ports:
       - 9000:80
     networks: 

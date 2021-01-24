@@ -1,0 +1,109 @@
+# se crea un deployment de la aplicación.
+# Para este punto de igual forma se crea un pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deploy
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: 111109/test-luxelare_covid-frontend:kubernetes
+        ports:
+        - containerPort: 80
+---
+#se crea un servicio que apunte hacia el pod antes creado
+#se le asigan el puerto 80 para que la peticion al servicio
+#sea sin especificar puerto 'http://covid-frontend'
+apiVersion: v1
+kind: Service
+metadata:
+  name: covid-frontend
+spec:
+  #se hace el match con el pod
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxy-deploy
+  labels:
+    app: proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: proxy
+  template:
+    metadata:
+      labels:
+        app: proxy
+    spec:
+      containers:
+      - name: proxy
+        image: 111109/test-luxelare_covid-proxy:kubernetes
+        ports:
+        - containerPort: 5000
+---
+#para este servicio se deja el puerto 5000 para que se pueda aplicar
+#un fowardport y se pueda acceder a la aplicacion desde el exterior
+apiVersion: v1
+kind: Service
+metadata:
+  name: covid-proxy
+spec:
+  selector:
+    app: proxy
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deploy
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: 111109/test-luxelare_covid-api:kubernetes
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: covid-api
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000

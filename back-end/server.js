@@ -5,7 +5,7 @@ function json_data(json){
     const records = json.records
     records.forEach(record =>{
         let obj = {}
-        obj.entidad_res = record.fields.entidad_res
+        obj.entidad_res = record.fields.entidad_nac
         obj.municipio_res = record.fields.municipio_res
         obj.sexo = record.fields.sexo
         obj.edad = record.fields.edad
@@ -23,13 +23,15 @@ const port = 8000;
 
 app.use(function (req, res, next) {
     // se cambia el ACAO para que permita el intercambio a cualquier origen
-    // podemos especificar un unico origen
+    // podemos especificar un unico origen.
+    //otra solución para el CORS es crear un forward proxy en el servidorweb
+    //ambas fueron implementadas
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
 });
 
 const https = require('https');
-const url = 'https://datos.cdmx.gob.mx/api/records/1.0/search/?dataset=casos-asociados-a-covid-19&q=&rows=10000&facet=sexo&facet=entidad_res&facet=municipio_res&facet=edad&facet=clas_final_escrita&facet=confirmados&facet=sospechosos&facet=negativos';
+const url = 'https://datos.cdmx.gob.mx/api/records/1.0/search/?dataset=casos-asociados-a-covid-19&q=&rows=10000&facet=sexo&facet=entidad_nac&facet=municipio_res&facet=edad&facet=clas_final_escrita&facet=confirmados&facet=sospechosos&facet=negativos';
 
 let json_response;
 // se crea la peticion a la API de la CDMX
@@ -93,6 +95,7 @@ function digestFunction(estados,casoCovid){
 //crea un arreglo de objetos, para trabajar con los
 //acumulados de los estados y lo llene la funcion digestFunction
 function createStates(response){
+    
     let facet_group = response.facet_groups;
     //obtenemos los valores de los facets segun su posición
     //en el response de la API CDMX
@@ -101,7 +104,7 @@ function createStates(response){
     let confirmados = facet_group[5];
     let negativos = facet_group[6];
     let sospechosos = facet_group[1];
-    let municipioRes = facet_group[6];
+    let municipioRes = facet_group[3];
     let edad = facet_group[0];
     let arrayEntidad = [];
     entidad_res.facets.forEach(entidad =>{

@@ -38,6 +38,8 @@ _Nota: debemos esperar aproximadamente 10 s en lo que la API obtiene los datos_
 
 _se realizaran pruebas de funcionamiento para validar que se cumplen con los puntos solicitados_
 
+antes de comenzar, para la version uno se hacia el conteo por estado de la republica con base en un facet denominado entidad_res(entidad recidencia), sin embargo, el día  22/01/2021 se modificó ese campo directamente desde la API de CDMX probocando solo un registro de la ciudad de México y no la de los 32 estados, por lo que se modifico ese facet y se ocupo el de entidad_nac (entidad nacimiento)
+
 Para realizar las pruebas de funcionamiento, podemos acceder en nuestro browser e introducir la siguiente URL
 - http://localhost:8000
 podemos apreciar que nos muestra el siguiente mensaje 

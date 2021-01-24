@@ -1,0 +1,7 @@
+yarn add react-chartjs-2 chart.js
+yarn add react react-dom leaflet
+yarn add react-leaflet
+yarn add react-loader-spinner
+yarn add react-router-dom
+yarn add express
+yarn add http-proxy-middleware

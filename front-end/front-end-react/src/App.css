@@ -1,0 +1,17 @@
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+}
+
+body{
+  background-color: #e5f6dc;
+}
+.title-navbar{
+  color: aliceblue;
+}
+.navbar-toggler{
+  background-color:lightslategrey;
+}
+.nav-text{
+  color: #e5f6dc;
+}
