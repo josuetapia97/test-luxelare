@@ -74,7 +74,7 @@ En el mismo navegador podemos abrir una nueva pestaña e ingresar a la siguiente
 
 ¡ Ups ! ¿qué paso? al parecer no se puede ver el dash ....
 
-Es normal, lo que sucede es que los contenedores están separados en dos redes diferentes según el diseño del archivo compose que se creo (esto no se pidió pero se trato de simular un escenario en donde los servidores se encuentran en diferentes redes),
+Es normal, lo que sucede es que los contenedores están separados en dos redes diferentes según el diseño del archivo compose que se creó (esto no se pidió pero se trato de simular un escenario en donde los servidores se encuentran en diferentes redes),
 entonces al querer hacer fetch a la api (backend) no lo puede alcanzar. A pesar de esto se puede comprobar la funcionalidad del frontend y si aun no me crees, espera a que lleguemos al funcionamiento del proxy.
 
 ¡¡¡perfecto!!! 
@@ -93,7 +93,7 @@ continuemos .....
 
 Para el punto 2 se solicita meter la solución del frontend en un contenedor.
 
-Se pidio realizar el frontend en React, por lo que se diseñó un pequeño servidor en Nodejs, debido a esto tambien se tuvo que crear un nuevo Dckerfile con una imagen base de Node, para mayor detalle podemos ver el archivo front-end/front-end-react/Dockerfile
+Se pidio realizar el frontend en React, por lo que se diseñó un pequeño servidor en Nodejs, debido a esto tambien se tuvo que crear un nuevo Dockerfile con una imagen base de Node, para mayor detalle podemos ver el archivo front-end/front-end-react/Dockerfile
 
 ¡Fantástico!
 
