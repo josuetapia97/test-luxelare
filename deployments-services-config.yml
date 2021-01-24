@@ -24,7 +24,7 @@ spec:
 ---
 #se crea un servicio que apunte hacia el pod antes creado
 #se le asigan el puerto 80 para que la peticion al servicio
-#sea sin especificar puerto 'http://covid-frontend'
+#se realice sin especificar puerto, es decir,'http://covid-frontend'
 apiVersion: v1
 kind: Service
 metadata:
